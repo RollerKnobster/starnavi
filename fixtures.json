@@ -1,0 +1,105 @@
+[
+{
+    "model": "api.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$oN6ZxWQy6zAJ$anez3wNRhJUK9SR34eOK0f33IgzlygmvLCUwz4hXmok=",
+        "last_login": "2017-07-11T20:13:21.908Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "No",
+        "last_name": "Name",
+        "email": "admin@fuck.you",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2017-07-11T20:13:16.998Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "api.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$oN6ZxWQy6zAJ$anez3wNRhJUK9SR34eOK0f33IgzlygmvLCUwz4hXmok=",
+        "last_login": "2017-07-11T20:13:21.908Z",
+        "is_superuser": true,
+        "username": "doorknob",
+        "first_name": "Roman",
+        "last_name": "Ivaniuk",
+        "email": "doorknob@fuck.you",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2017-07-11T20:13:16.998Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "api.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$oN6ZxWQy6zAJ$anez3wNRhJUK9SR34eOK0f33IgzlygmvLCUwz4hXmok=",
+        "last_login": "2017-07-11T20:13:21.908Z",
+        "is_superuser": false,
+        "username": "newuser",
+        "first_name": "Some",
+        "last_name": "Body",
+        "email": "newuser@fuck.you",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2017-07-11T20:13:16.998Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "api.post",
+    "pk": 1,
+    "fields": {
+        "title": "Sensacion",
+        "author": 1,
+        "body": "XXXTentacion is gay",
+        "created": "2017-07-11T20:16:50.443Z"
+    }
+},
+{
+    "model": "api.post",
+    "pk": 2,
+    "fields": {
+        "title": "One more post",
+        "author": 1,
+        "body": "Post body.",
+        "created": "2017-07-11T20:27:16.918Z"
+    }
+},
+{
+    "model": "api.post",
+    "pk": 3,
+    "fields": {
+        "title": "Fucking awesome",
+        "author": 1,
+        "body": "Wow, proud of you",
+        "created": "2017-07-13T13:51:56.074Z"
+    }
+},
+{
+    "model": "api.post",
+    "pk": 4,
+    "fields": {
+        "title": "Hey you",
+        "author": 1,
+        "body": "What you gon do?",
+        "created": "2017-07-13T20:35:18.544Z"
+    }
+},
+{
+    "model": "api.post",
+    "pk": 5,
+    "fields": {
+        "title": "Markdown",
+        "author": 1,
+        "body": "This is a post formatted with markdown",
+        "created": "2017-07-15T13:59:20.960Z"
+    }
+}]
