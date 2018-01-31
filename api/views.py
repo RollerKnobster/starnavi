@@ -1,30 +1,18 @@
 import clearbit
 from pyhunter import PyHunter
 from rest_framework import status, viewsets
-from rest_framework import permissions
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, detail_route
-from rest_framework.reverse import reverse
+from rest_framework.decorators import detail_route
 from starnavi.settings import CLEARBIT_API_KEY, HUNTER_API_KEY
 from .serializers import PostSerializer, UserSerializer
 from .models import Post, User, Like
-
-hunter = PyHunter(HUNTER_API_KEY)
-clearbit.key = CLEARBIT_API_KEY
-
-
-@api_view(['GET'])
-def api_root(request):
-    return Response({
-        'posts': reverse('posts', request=request),
-        'users': reverse('users', request=request)
-    })
 
 
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -48,11 +36,11 @@ class PostViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def get_permissions(self):
         if self.action is 'create':
-            self.permission_classes = [permissions.AllowAny, ]
+            self.permission_classes = [AllowAny, ]
         return super(self.__class__, self).get_permissions()
 
     def create(self, request, *args, **kwargs):
@@ -60,6 +48,7 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
 
         email = request.data.get('email', {})
+        hunter = PyHunter(HUNTER_API_KEY)
         hunter_res = hunter.email_verifier(email)
         if hunter_res.get('result', {}) == 'undeliverable':
             data = {
@@ -71,6 +60,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
         new_user = User.objects.get(username=request.data['username'])
         if new_user:
+            clearbit.key = CLEARBIT_API_KEY
             clear_res = clearbit.Enrichment.find(email=email, stream=True)
             if clear_res is not None:
                 name = clear_res['person']['name']

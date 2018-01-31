@@ -15,9 +15,9 @@ class UserSerializer(serializers.ModelSerializer):
     posts = serializers.HyperlinkedRelatedField(many=True,
                                                 view_name='post-detail',
                                                 read_only=True)
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     password = serializers.CharField(min_length=8, max_length=128,
                                      write_only=True)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     class Meta:
         model = User
