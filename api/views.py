@@ -30,7 +30,10 @@ class PostViewSet(viewsets.ModelViewSet):
             new_row = Like(user=request.user, post=post)
             new_row.save()
 
-        return Response(status.HTTP_200_OK)
+        data = {
+            'response': ['Like counted.']
+        }
+        return Response(data, status.HTTP_200_OK)
 
 
 class UserViewSet(viewsets.ModelViewSet):
