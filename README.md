@@ -18,12 +18,12 @@ python manage.py runserver
 
 /api/posts/ ['GET', 'POST']
 
-/api/posts/<pk>/ ['GET', 'UPDATE', 'DELETE']
+/api/posts/pk/ ['GET', 'UPDATE', 'DELETE']
   
-/api/posts/<pk>/like/ ['GET']
+/api/posts/pk/like/ ['GET']
   
 /api/users/ ['GET', 'POST']
 
-/api/users/<pk>/ ['GET', 'UPDATE', 'DELETE']
+/api/users/pk/ ['GET', 'UPDATE', 'DELETE']
   
 /api-auth/ ['POST']
