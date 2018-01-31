@@ -10,7 +10,11 @@ pip install django, djangorestframework, pyhunter, clearbit, requests, elizabeth
 
 ## Deployment
 
-python bot.py
+python manage.py makemigrations
+
+python manage.py migrate
+
+python bot.py (MAKE SURE THE DATABASE IS FRESH AND EMPTY)
 
 python manage.py runserver
 
