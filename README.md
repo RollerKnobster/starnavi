@@ -6,7 +6,7 @@ A simple restful api based social network.
 
 What packages you need to install
 
-pip install django, djangorestframework, pyhunter, clearbit, requests, elizabeth
+pip install -r requirements.txt
 
 ## Deployment
 
@@ -49,3 +49,11 @@ Even though Elizabeth generates fake emails, hunter.io still thinks they're legi
 /api-auth/ ['POST'] — authorize. A request should contain a username and a password. Send retrieved token with each consequent request. Does not require authentication (duh).
 
 All methods are allowed to superusers/staff.
+
+## Request/Response examples
+
+Register a user:
+
+```
+
+```
