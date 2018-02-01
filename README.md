@@ -5,11 +5,11 @@ A simple restful api based social network.
 ## Prerequisites
 
 What packages you need to install
-
+```
 pip install -r requirements.txt
-
+```
 ## Deployment
-
+```
 python manage.py makemigrations
 
 python manage.py migrate
@@ -17,6 +17,41 @@ python manage.py migrate
 python bot.py (MAKE SURE THE DATABASE IS FRESH AND EMPTY, AND THE SERVER IS RUNNING)
 
 python manage.py runserver
+```
+
+The default gateway for the API server will be ```127.0.0.1:8000/```, but the server is also hosted remotely on a DigitalOcean droplet and tunneled into the web using ```ngrok``` and can be accessed by this address:
+
+```
+https://c56971b1.ngrok.io/
+```
+
+Existing accounts and their credentials:
+
+```
+username: christena_2812
+password: *Dd+zq>'
+rank: user
+
+username: daryl_9425
+password: rhT;zHi)
+rank: user
+
+username: ranee_1548
+password: FR-x/YjQ
+rank: user
+
+username: felicidad-9588
+password: q/Z|a>Yc
+rank: user
+
+username: ladawn-9959
+password: =QF(^TCX
+rank: user
+
+username: superuser
+password: superpassword
+rank: superuser/staff
+```
 
 ## Note on hunter.io and clearbit
 
