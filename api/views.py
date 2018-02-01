@@ -7,14 +7,30 @@ from rest_framework.decorators import detail_route
 from starnavi.settings import CLEARBIT_API_KEY, HUNTER_API_KEY
 from .serializers import PostSerializer, UserSerializer
 from .models import Post, User, Like
+from .permissions import IsOwnerOrReadOnly
 
 
 class PostViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for a post, also creates endpoints for api requests.
+    """
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, )
+
+    def get_permissions(self):
+        """
+        Setting custom permissions for unsafe methods (update = PATCH,
+        destroy = DELETE).
+        """
+        if self.action in ('update', 'destroy'):
+            self.permission_classes = (IsOwnerOrReadOnly, )
+        return super(self.__class__, self).get_permissions()
 
     def perform_create(self, serializer):
+        """
+        Manually add the author to a created post. 
+        """
         serializer.save(author=self.request.user)
 
     @detail_route()
@@ -37,19 +53,35 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for a user. Also creates endpoints for api requests.
+    """
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, )
 
     def get_permissions(self):
+        """
+        Setting custom permissions for unsafe methods (create = POST, 
+        update = PATCH, destroy = DELETE).
+        """
         if self.action is 'create':
-            self.permission_classes = [AllowAny, ]
+            self.permission_classes = (AllowAny, )
+        elif self.action in ('update', 'destroy'):
+            self.permission_classes = (IsOwnerOrReadOnly, )
+
         return super(self.__class__, self).get_permissions()
 
     def create(self, request, *args, **kwargs):
+        """
+        Manually override the POST method behavior to implement checking
+        email for validity using hunter.io and fetching first and last name of
+        a user according to an email using clearbit.
+        """
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
+        # Checking email for validity using hunter.io
         email = request.data.get('email', {})
         hunter = PyHunter(HUNTER_API_KEY)
         hunter_res = hunter.email_verifier(email)
@@ -63,6 +95,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
         new_user = User.objects.get(username=request.data['username'])
         if new_user:
+            # Trying to fetch first and last name of a user using clearbit
             clearbit.key = CLEARBIT_API_KEY
             clear_res = clearbit.Enrichment.find(email=email, stream=True)
             if clear_res is not None:

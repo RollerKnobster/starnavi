@@ -28,5 +28,5 @@ router.register('posts', views.PostViewSet)
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^api/', include(router.urls)),
-    re_path(r'^api-auth/$', obtain_jwt_token),
+    re_path(r'^api-auth/$', obtain_jwt_token,),
 ]

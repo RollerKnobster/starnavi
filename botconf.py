@@ -3,7 +3,7 @@ from elizabeth import Personal, Text
 
 person = Personal('en')
 text = Text('en')
-ADDRESS = 'http://127.0.0.1:8000/api/'
+ADDRESS = 'http://127.0.0.1:8000/api'
 
 try:
     inf = open('config.json')
