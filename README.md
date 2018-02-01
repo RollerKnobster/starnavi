@@ -52,8 +52,114 @@ All methods are allowed to superusers/staff.
 
 ## Request/Response examples
 
-Register a user:
+Registering a user.
 
+Request:
+```
+{
+    url: '127.0.0.1:8000/api/users/',
+    method: 'POST',
+    data: {
+        'username': 'haystack',
+        'password': 'stackhay',
+        'email': 'hayhay@stack.com'
+    }
+}
+```
+Response:
+```
+{
+    status: '200 OK',
+    response: {
+        "url": "http://127.0.0.1:8000/api/users/1/",
+        "username": "haystack",
+        "email": "hayhay@stack.com",
+        "first_name": "",
+        "last_name": "",
+        "posts": []
+    }
+}
 ```
 
+Authenticating.
+
+Request:
 ```
+{
+    url: '127.0.0.1:8000/api-auth/',
+    method: 'POST',
+    data: {
+        'username': 'haystack',
+        'password': 'stackhay'
+    }
+}
+```
+Response:
+```
+{
+    status: "200 OK",
+    response: {
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6ImxvdmV0dGEtMTI3NyIsImV4cCI6MTUxNzQ3NjE4NiwiZW1haWwiOiJrZWVsZXlfNzExOUBsaXZlLmNvbSJ9.tz5Xqnj67M0i9fNGAFOsYl-Umc32tXkzVhysJNQZWxU"
+    }
+}
+```
+
+Creating a post.
+
+Request:
+```
+{
+    url: '127.0.0.1:8000/api/posts/',
+    method: 'POST',
+    data: {
+        'title': 'Some title',
+        'body': 'Some Body once told me the world is gonna roll me.'
+    },
+    headers: {
+        'Authorization': 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6ImxvdmV0dGEtMTI3NyIsImV4cCI6MTUxNzQ3NjE4NiwiZW1haWwiOiJrZWVsZXlfNzExOUBsaXZlLmNvbSJ9.tz5Xqnj67M0i9fNGAFOsYl-Umc32tXkzVhysJNQZWxU'
+    }
+}
+```
+Response:
+```
+{
+    status: "201 CREATED",
+    response: {
+        "url": "http://127.0.0.1:8000/api/posts/1/",
+        "id": 1,
+        "title": "Some title",
+        "body": "Some Body once told me the world is gonna roll me.",
+        "likes": 0,
+        "created": "%TIMESTAMP%",
+        "author": "haystack"
+    }
+}
+```
+
+Deleting a post.
+
+Request:
+```
+{
+    url: '127.0.0.1:8000/api/posts/1/',
+    method: 'DELETE',
+    headers: {
+        'Authorization': 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6ImxvdmV0dGEtMTI3NyIsImV4cCI6MTUxNzQ3NjE4NiwiZW1haWwiOiJrZWVsZXlfNzExOUBsaXZlLmNvbSJ9.tz5Xqnj67M0i9fNGAFOsYl-Umc32tXkzVhysJNQZWxU'
+    }
+}
+```
+Response:
+```
+{
+    status: "204 NO CONTENT",
+    response: {
+    }
+}
+```
+
+## Common HTTP errors
+
+400 Bad Request — Most likely you entered an invalid email.
+401 Unauthorized — You are trying to perform an action unauthorized, like trying to get a post detail etc.
+402 Payment Required — You've exceeded your free requests to ClearBit API.
+403 Forbidden — You are trying to perform an action you are not allowed, like deleting someone else's post.

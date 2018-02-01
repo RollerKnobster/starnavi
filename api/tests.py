@@ -3,7 +3,6 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 from .models import User, Post, Like
-from .views import UserViewSet, PostViewSet
 
 # Create your tests here.
 

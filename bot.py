@@ -47,7 +47,7 @@ if __name__ == "__main__":
     for user in users:
         for _ in range(randint(0, MAX_LIKES_PER_USER)):
             headers = {'Authorization': 'JWT {}'.format(users[user]['token'])}
-            response = requests.get(ADDRESS + '/posts/{}/like'
+            response = requests.get(ADDRESS + '/posts/{}/like/'
                                     .format(randint(1, posts + 1)),
                                     headers=headers)
             print('Like added.')

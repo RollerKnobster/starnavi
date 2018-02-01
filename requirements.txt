@@ -1,6 +1,7 @@
 django==2.0.1
 djangorestframework==3.7.7
 djangorestframework-jwt==1.11.0
+setuptools==38.4.0
 requests==2.18.4
 elizabeth==0.4.0
 clearbit==0.1.7
