@@ -52,7 +52,7 @@ All methods are allowed to superusers/staff.
 
 ## Request/Response examples
 
-Registering a user.
+### Registering a user.
 
 Request:
 ```
@@ -81,7 +81,7 @@ Response:
 }
 ```
 
-Authenticating.
+### Authenticating
 
 Request:
 ```
@@ -104,7 +104,7 @@ Response:
 }
 ```
 
-Creating a post.
+### Creating a post
 
 Request:
 ```
@@ -136,7 +136,35 @@ Response:
 }
 ```
 
-Deleting a post.
+### Getting a post
+
+Request:
+```
+{
+    url: '127.0.0.1:8000/api/posts/1/',
+    method: 'GET',
+    headers: {
+        'Authorization': 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6ImxvdmV0dGEtMTI3NyIsImV4cCI6MTUxNzQ3NjE4NiwiZW1haWwiOiJrZWVsZXlfNzExOUBsaXZlLmNvbSJ9.tz5Xqnj67M0i9fNGAFOsYl-Umc32tXkzVhysJNQZWxU'
+    }
+}
+```
+Response:
+```
+{
+    status: "200 OK",
+    response: {
+        "url": "http://127.0.0.1:8000/api/posts/1/",
+        "id": 1,
+        "title": "Some title",
+        "body": "Some Body once told me the world is gonna roll me.",
+        "likes": 0,
+        "created": "%TIMESTAMP%",
+        "author": "haystack"
+    }
+}
+```
+
+### Deleting a post
 
 Request:
 ```
@@ -153,6 +181,51 @@ Response:
 {
     status: "204 NO CONTENT",
     response: {
+    }
+}
+```
+
+### Getting a user without authenticating
+
+Request:
+```
+{
+    url: '127.0.0.1:8000/api/users/1/',
+    method: 'GET'
+}
+```
+Response:
+```
+{
+    status: "401 UNAUTHORIZED",
+    response: {
+        'non_field_error': 'Credentials have not been provided for this action.'
+    }
+}
+```
+
+### Trying to update someone else's post
+
+Request:
+```
+{
+    url: '127.0.0.1:8000/api/posts/2/',
+    method: 'PUT',
+    data: {
+        'title': 'New title',
+        'body': 'New body'
+    },
+    headers: {
+        'Authorization': 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6ImxvdmV0dGEtMTI3NyIsImV4cCI6MTUxNzQ3NjE4NiwiZW1haWwiOiJrZWVsZXlfNzExOUBsaXZlLmNvbSJ9.tz5Xqnj67M0i9fNGAFOsYl-Umc32tXkzVhysJNQZWxU'
+    }
+}
+```
+Response:
+```
+{
+    status: "403 FORBIDDEN",
+    response: {
+        'detail': 'You do not have permission to perform this action.'
     }
 }
 ```
