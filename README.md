@@ -268,6 +268,9 @@ Response:
 ## Common HTTP errors
 
 400 Bad Request — Most likely you entered an invalid email.
+
 401 Unauthorized — You are trying to perform an action unauthorized, like trying to get a post detail etc.
+
 402 Payment Required — You've exceeded your free requests to ClearBit API.
+
 403 Forbidden — You are trying to perform an action you are not allowed, like deleting someone else's post.
