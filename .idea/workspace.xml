@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="46e3e275-2249-48ef-a6bf-efe14e3b818d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -72,8 +71,8 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="230" column="3" lean-forward="false" selection-start-line="230" selection-start-column="3" selection-end-line="230" selection-end-column="3" />
+            <state relative-caret-position="212">
+              <caret line="208" column="8" lean-forward="true" selection-start-line="208" selection-start-column="8" selection-end-line="208" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -953,8 +952,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="230" column="3" lean-forward="false" selection-start-line="230" selection-start-column="3" selection-end-line="230" selection-end-column="3" />
+        <state relative-caret-position="212">
+          <caret line="208" column="8" lean-forward="true" selection-start-line="208" selection-start-column="8" selection-end-line="208" selection-end-column="8" />
           <folding />
         </state>
       </provider>

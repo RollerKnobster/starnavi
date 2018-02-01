@@ -52,7 +52,7 @@ All methods are allowed to superusers/staff.
 
 ## Request/Response examples
 
-### Registering a user.
+### Registering a user
 
 Request:
 ```
