@@ -23,7 +23,7 @@ python manage.py runserver
 Even though Elizabeth generates fake emails, hunter.io still thinks they're legit because it only checks them with a regex and pokes the SMTP server for liveliness. Because of the same reason, clearbit is unable to fetch first and last names for users based on their emails. This is why to check their implementations for correctness you'll have to manually send a request for registering with emails which are clearly fake or broken for hunter, or real for clearbit.
 
 ## API endpoints
-
+```
 /api/posts/ ['GET'] — get a list of posts. Requires authentication.
 
 /api/posts/ ['POST'] — create a post. A request should contain the title and body of a post. Requires authentication.
@@ -49,7 +49,7 @@ Even though Elizabeth generates fake emails, hunter.io still thinks they're legi
 /api-auth/ ['POST'] — authorize. A request should contain a username and a password. Send retrieved token with each consequent request. Does not require authentication (duh).
 
 All methods are allowed to superusers/staff.
-
+```
 ## Request/Response examples
 
 ### Registering a user
