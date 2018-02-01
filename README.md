@@ -165,7 +165,7 @@ Response:
         "title": "Some title",
         "body": "Some Body once told me the world is gonna roll me.",
         "likes": 0,
-        "created": "%TIMESTAMP%",
+        "created": "2018-02-01T10:41:56.371443Z",
         "author": "haystack"
     }
 }
@@ -193,7 +193,7 @@ Response:
         "title": "Some title",
         "body": "Some Body once told me the world is gonna roll me.",
         "likes": 0,
-        "created": "%TIMESTAMP%",
+        "created": "2018-02-01T10:41:56.371443Z",
         "author": "haystack"
     }
 }
